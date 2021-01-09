@@ -1,0 +1,1 @@
+Mobilya mağazası için her türlü ürünün satış takibini ve stok kaydını tutan bir program.
