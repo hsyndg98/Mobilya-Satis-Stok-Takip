@@ -80,60 +80,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlisListesi.cs">
+    <Compile Include="WindowsProject\AlisListesi\AlisListesi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AlisListesi.Designer.cs">
+    <Compile Include="WindowsProject\AlisListesi\AlisListesi.Designer.cs">
       <DependentUpon>AlisListesi.cs</DependentUpon>
     </Compile>
-    <Compile Include="SatisVeStok.cs">
+    <Compile Include="WindowsProject\SatisEkrani\SatisVeStok.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SatisVeStok.Designer.cs">
+    <Compile Include="WindowsProject\SatisEkrani\SatisVeStok.Designer.cs">
       <DependentUpon>SatisVeStok.cs</DependentUpon>
     </Compile>
-    <Compile Include="MüsteriDuzenle.cs">
+    <Compile Include="WindowsProject\Müsteri\MüsteriDuzenle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MüsteriDuzenle.Designer.cs">
+    <Compile Include="WindowsProject\Müsteri\MüsteriDuzenle.Designer.cs">
       <DependentUpon>MüsteriDuzenle.cs</DependentUpon>
     </Compile>
-    <Compile Include="MüsteriListesi.cs">
+    <Compile Include="WindowsProject\Müsteri\MüsteriListesi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MüsteriListesi.Designer.cs">
+    <Compile Include="WindowsProject\Müsteri\MüsteriListesi.Designer.cs">
       <DependentUpon>MüsteriListesi.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SatisEkrani.cs">
+    <Compile Include="WindowsProject\SatisListesi\SatisEkrani.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SatisEkrani.Designer.cs">
+    <Compile Include="WindowsProject\SatisListesi\SatisEkrani.Designer.cs">
       <DependentUpon>SatisEkrani.cs</DependentUpon>
     </Compile>
-    <Compile Include="StokDuzenle.cs">
+    <Compile Include="WindowsProject\Stok\StokDuzenle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StokDuzenle.Designer.cs">
+    <Compile Include="WindowsProject\Stok\StokDuzenle.Designer.cs">
       <DependentUpon>StokDuzenle.cs</DependentUpon>
     </Compile>
-    <Compile Include="StokListesi.cs">
+    <Compile Include="WindowsProject\Stok\StokListesi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StokListesi.Designer.cs">
+    <Compile Include="WindowsProject\Stok\StokListesi.Designer.cs">
       <DependentUpon>StokListesi.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AlisListesi.resx">
+    <EmbeddedResource Include="WindowsProject\AlisListesi\AlisListesi.resx">
       <DependentUpon>AlisListesi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SatisVeStok.resx">
+    <EmbeddedResource Include="WindowsProject\SatisEkrani\SatisVeStok.resx">
       <DependentUpon>SatisVeStok.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MüsteriDuzenle.resx">
+    <EmbeddedResource Include="WindowsProject\Müsteri\MüsteriDuzenle.resx">
       <DependentUpon>MüsteriDuzenle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MüsteriListesi.resx">
+    <EmbeddedResource Include="WindowsProject\Müsteri\MüsteriListesi.resx">
       <DependentUpon>MüsteriListesi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -145,13 +145,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SatisEkrani.resx">
+    <EmbeddedResource Include="WindowsProject\SatisListesi\SatisEkrani.resx">
       <DependentUpon>SatisEkrani.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StokDuzenle.resx">
+    <EmbeddedResource Include="WindowsProject\Stok\StokDuzenle.resx">
       <DependentUpon>StokDuzenle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StokListesi.resx">
+    <EmbeddedResource Include="WindowsProject\Stok\StokListesi.resx">
       <DependentUpon>StokListesi.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
