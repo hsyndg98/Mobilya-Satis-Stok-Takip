@@ -52,8 +52,10 @@ namespace ProjeDeneme
         //mobilya  comboboxı için
         private void mobilya_yukle()
         {
-            NpgsqlCommand komut = new NpgsqlCommand("select DISTINCT mobilyatur from stok where kategoriad=@p1", baglanti);
+            NpgsqlCommand komut = new NpgsqlCommand("select DISTINCT mobilyatur from stok where kategoriad=@p1 and marka=@p2", baglanti);
             komut.Parameters.AddWithValue("@p1", kategoriComboBox.SelectedValue);
+            komut.Parameters.AddWithValue("@p2", markaComboBox.SelectedValue);
+
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(komut);
             DataTable dt = new DataTable();
             turComboBox.DisplayMember = "mobilyatur";
