@@ -131,7 +131,7 @@ namespace ProjeDeneme
                 try
                 {
                     baglanti.Open();
-                    NpgsqlCommand komut = new NpgsqlCommand("uptade stok set urun kategoriid=@p1," +
+                    NpgsqlCommand komut = new NpgsqlCommand("update stok set  kategoriad=@p1," +
                         "mobilyatur=@p2,marka=@p3,stokadedi=@p4,birimfiyati=@p5 where stokid=@p6",baglanti);
                     komut.Parameters.AddWithValue("@p6", urunidTextBox.Text);
                     komut.Parameters.AddWithValue("@p1", kategoriTextBox.Text);
@@ -141,6 +141,7 @@ namespace ProjeDeneme
                     komut.Parameters.AddWithValue("@p5", int.Parse(fiyatTextBox.Text));
                     komut.ExecuteNonQuery();
                     baglanti.Close();
+                    EkranaYazdir();
                     MessageBox.Show("Başarıyla güncellendi", "Veritabanı işlemleri",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -149,6 +150,25 @@ namespace ProjeDeneme
                     MessageBox.Show(ex.Message, "Lütfen düzgün giriş yapınız");
                 }
             }
+        }
+
+        private void StokDuzenle_Load(object sender, EventArgs e)
+        {
+            EkranaYazdir();
+        }
+
+        private void EkranaYazdir()
+        {
+            NpgsqlDataAdapter komut = new NpgsqlDataAdapter("select * from stok", baglanti);
+            DataSet dt = new DataSet();
+            komut.Fill(dt);
+            dataGridView1.DataSource = dt.Tables[0];
+            dataGridView1.Columns["stokid"].HeaderText = "StokID";
+            dataGridView1.Columns["kategoriad"].HeaderText = "Kategori";
+            dataGridView1.Columns["mobilyatur"].HeaderText = "Mobilya";
+            dataGridView1.Columns["marka"].HeaderText = "Marka";
+            dataGridView1.Columns["stokadedi"].HeaderText = "Stok Adedi";
+            dataGridView1.Columns["birimfiyati"].HeaderText = "Birim Fiyatı";
         }
     }
 }

@@ -52,6 +52,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.satisfiyatiNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.satisadediNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.markaComboBox = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.kategoriComboBox = new System.Windows.Forms.ComboBox();
@@ -65,15 +67,13 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.sepetDataGridView = new System.Windows.Forms.DataGridView();
             this.sepettenCikarButton = new System.Windows.Forms.Button();
-            this.satisadediNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.satisfiyatiNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
             this.müsteriGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.satisfiyatiNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.satisadediNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sepetDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.satisadediNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.satisfiyatiNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -185,6 +185,7 @@
             this.satisButton.TabIndex = 5;
             this.satisButton.Text = "SATIŞ YAP";
             this.satisButton.UseVisualStyleBackColor = true;
+            this.satisButton.Click += new System.EventHandler(this.satisButton_Click);
             // 
             // sepetButton
             // 
@@ -298,6 +299,30 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ürün Bilgisi";
             // 
+            // satisfiyatiNumericUpDown
+            // 
+            this.satisfiyatiNumericUpDown.Location = new System.Drawing.Point(151, 216);
+            this.satisfiyatiNumericUpDown.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.satisfiyatiNumericUpDown.Name = "satisfiyatiNumericUpDown";
+            this.satisfiyatiNumericUpDown.Size = new System.Drawing.Size(192, 27);
+            this.satisfiyatiNumericUpDown.TabIndex = 25;
+            // 
+            // satisadediNumericUpDown
+            // 
+            this.satisadediNumericUpDown.Location = new System.Drawing.Point(151, 177);
+            this.satisadediNumericUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.satisadediNumericUpDown.Name = "satisadediNumericUpDown";
+            this.satisadediNumericUpDown.Size = new System.Drawing.Size(192, 27);
+            this.satisadediNumericUpDown.TabIndex = 24;
+            // 
             // markaComboBox
             // 
             this.markaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -390,6 +415,7 @@
             this.temizleButton.TabIndex = 11;
             this.temizleButton.Text = "TEMİZLE";
             this.temizleButton.UseVisualStyleBackColor = true;
+            this.temizleButton.Click += new System.EventHandler(this.temizleButton_Click);
             // 
             // sepetDataGridView
             // 
@@ -415,30 +441,6 @@
             this.sepettenCikarButton.Text = "SEPETTEN ÇIKAR";
             this.sepettenCikarButton.UseVisualStyleBackColor = true;
             this.sepettenCikarButton.Click += new System.EventHandler(this.sepettenCikarButton_Click_1);
-            // 
-            // satisadediNumericUpDown
-            // 
-            this.satisadediNumericUpDown.Location = new System.Drawing.Point(151, 177);
-            this.satisadediNumericUpDown.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.satisadediNumericUpDown.Name = "satisadediNumericUpDown";
-            this.satisadediNumericUpDown.Size = new System.Drawing.Size(192, 27);
-            this.satisadediNumericUpDown.TabIndex = 24;
-            // 
-            // satisfiyatiNumericUpDown
-            // 
-            this.satisfiyatiNumericUpDown.Location = new System.Drawing.Point(151, 216);
-            this.satisfiyatiNumericUpDown.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.satisfiyatiNumericUpDown.Name = "satisfiyatiNumericUpDown";
-            this.satisfiyatiNumericUpDown.Size = new System.Drawing.Size(192, 27);
-            this.satisfiyatiNumericUpDown.TabIndex = 25;
             // 
             // SatisVeStok
             // 
@@ -467,10 +469,10 @@
             this.müsteriGroupBox.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.satisfiyatiNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.satisadediNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sepetDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.satisadediNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.satisfiyatiNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

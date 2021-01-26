@@ -75,6 +75,8 @@ namespace ProjeDeneme
             tablo.Columns.Add("Mobilya Türü", typeof(string));
             tablo.Columns.Add("Satış Adedi", typeof(string));
             tablo.Columns.Add("Satış Fiyatı", typeof(string));
+            tablo.Columns.Add("ÜrünID", typeof(string));
+
             satisAdediKontrol();
 
         }
@@ -83,6 +85,7 @@ namespace ProjeDeneme
         //sepete ekler
         private void sepetButton_Click(object sender, EventArgs e)
         {
+
             Boolean var_mi = false;
             string  ad_soyad;
             string marka, kategori, mobilya_tur;
@@ -116,8 +119,10 @@ namespace ProjeDeneme
             //aynı üründen yoksa ekleniyor
             if (!var_mi)
             {
-                tablo.Rows.Add(ad_soyad, marka, kategori, mobilya_tur, satis_adedi, satis_fiyati);
+
+                tablo.Rows.Add(ad_soyad, marka, kategori, mobilya_tur, satis_adedi, satis_fiyati,satisAdediKontrol());
                 sepetDataGridView.DataSource = tablo;
+                sepetDataGridView.Columns["ÜrünID"].Visible = false;
                 ekran_temizle();
             }
             else
@@ -141,10 +146,11 @@ namespace ProjeDeneme
                 sepetDataGridView.Rows.Remove(item);
             }
         }
-
-        private void satisAdediKontrol()
+        
+        //girilen üründen satılabilecek maksimum adetle sınırlanır ve seçilen ürünün id sini döndürür
+        private string satisAdediKontrol()
         {
-            NpgsqlCommand komut = new NpgsqlCommand("select stokadedi from stok where marka=@p1 and kategoriad=@p2 and mobilyatur=@p3", baglanti);
+            NpgsqlCommand komut = new NpgsqlCommand("select stokadedi,stokid from stok where marka=@p1 and kategoriad=@p2 and mobilyatur=@p3", baglanti);
             komut.Parameters.AddWithValue("@p1", markaComboBox.SelectedValue);
             komut.Parameters.AddWithValue("@p2", kategoriComboBox.SelectedValue);
             komut.Parameters.AddWithValue("@p3", turComboBox.SelectedValue);
@@ -152,6 +158,7 @@ namespace ProjeDeneme
             DataSet dt = new DataSet();
             da.Fill(dt);
             satisadediNumericUpDown.Maximum = Convert.ToInt32(dt.Tables[0].Rows[0][0]);
+            return Convert.ToString(dt.Tables[0].Rows[0][1]);
         }
         private void ekran_temizle()
         {
@@ -214,12 +221,69 @@ namespace ProjeDeneme
         {
             ekran_temizle();
             kategori_yukle();
-            
+           
         }
 
         private void turComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            satisAdediKontrol();
+        }
+        //satış yap butonunun işlemlerini halleder
+        private void satisButton_Click(object sender, EventArgs e)
+        {
+            int satisfiyat;
+            int satisadedi;
+            string musteriid,stokid;
+            for (int rows = 0; rows < sepetDataGridView.Rows.Count; rows++)
+            {
+               // satisfiyat = int.Parse(sepetDataGridView.Rows[rows].Cells[5].ToString());
+                satisadedi = Convert.ToInt32(sepetDataGridView.Rows[rows].Cells[4].Value.ToString());
+                //musteriid = sepetDataGridView.Rows[rows].Cells[0].ToString();
+                stokid = sepetDataGridView.Rows[rows].Cells[6].Value.ToString();
+                stok_guncelle(stokid, satisadedi);
+            }
+        }
+        //Satış yapılınca stoktan adet ekiltilsin
+        private void stok_guncelle(string stokid,int stokadet)
+        {
             
+            int yenistokadeti;
+            try
+            {
+                yenistokadeti = Convert.ToInt32(satisadediNumericUpDown.Maximum) - stokadet;
+                baglanti.Open();
+                NpgsqlCommand komut = new NpgsqlCommand("update stok set stokadedi=@p2 where stokid=@p1" ,baglanti);
+                komut.Parameters.AddWithValue("@p1", stokid);
+                komut.Parameters.AddWithValue("@p2", yenistokadeti);
+                komut.ExecuteNonQuery();
+                baglanti.Close();
+            }
+            catch (Exception ex)
+            {
+                baglanti.Close();
+                MessageBox.Show(ex.Message+" "+stokadet, "Veritabanı işlemleri!!!");   
+            }
+            MessageBox.Show("Satış başarıyla gerçekleştirildi.", "Satış İşlemleri");
+            Sepeti_temizle();
+
+        }
+        //sepetteki ürünleri temizler
+        private void temizleButton_Click(object sender, EventArgs e)
+        {
+            Sepeti_temizle();
+        }
+        //Sepetteki ürünlerin hepsini temizler
+        private void Sepeti_temizle()
+        {
+            List<DataGridViewRow> toBeDeleted = new List<DataGridViewRow>();
+            foreach (DataGridViewRow item in sepetDataGridView.Rows)
+            {
+                toBeDeleted.Add(item);
+            }
+            foreach (DataGridViewRow item in toBeDeleted)
+            {
+                sepetDataGridView.Rows.Remove(item);
+            }
         }
     }
 }
